@@ -34,8 +34,8 @@ namespace DatabaseViewer.Console
 
             var selectedNumber = (int) char.GetNumericValue(System.Console.ReadKey().KeyChar);
 
-            return connectionStrings.Length > selectedNumber && selectedNumber > 0
-                ? connectionStrings[selectedNumber].ConnectionString
+            return connectionStrings.Length >= selectedNumber && selectedNumber > 0
+                ? connectionStrings[selectedNumber - 1].ConnectionString
                 : null;
         }
 
