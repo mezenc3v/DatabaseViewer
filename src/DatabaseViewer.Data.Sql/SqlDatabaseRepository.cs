@@ -20,29 +20,27 @@ namespace DatabaseViewer.Data.Sql
 			{
 				connection.Open();
 				var tablesMeta = connection.GetSchema("Tables");
-				var databaseMap = new DatabaseMap(tablesMeta.TableName);
+				var databaseMap = new DatabaseMap(connection.Database);
 				foreach (DataRow tableMeta in tablesMeta.Rows)
 				{
 					var tableName = tableMeta["TABLE_NAME"].ToString();
 					var restrictionArr = new[] { connection.Database, null, tableName, null };
-
-					databaseMap.DatabaseName = tableName;
 					var tablesMetaList = new TableMap(tableName);
 					databaseMap.TableMaps.Add(tablesMetaList);
 
 					DataTable columns = connection.GetSchema("Columns", restrictionArr);
-					DataTable dataTypes = connection.GetSchema("DataTypes");
+					//DataTable dataTypes = connection.GetSchema("DataTypes");
 					foreach (DataRow row in columns.Rows)
 					{
 						var colName = row["COLUMN_NAME"].ToString();
 						var typeShortName = row["DATA_TYPE"].ToString();
+						//TODO: what type of return?
+						//var typeFullName = dataTypes.Rows
+						//	.OfType<DataRow>()
+						//	.FirstOrDefault(p => p["TypeName"].ToString() == typeShortName)
+						//	?["DataType"].ToString() ?? typeShortName;
 
-						var typeFullName = dataTypes.Rows
-							.OfType<DataRow>()
-							.FirstOrDefault(p => p["TypeName"].ToString() == typeShortName)
-							?["DataType"].ToString() ?? typeShortName;
-
-						tablesMetaList.ColumnMaps.Add(new ColumnMap(colName, typeFullName));
+						tablesMetaList.ColumnMaps.Add(new ColumnMap(colName, typeShortName));
 					}
 				}
 				return databaseMap;

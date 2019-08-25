@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DatabaseViewer.Data.Sql;
 using NUnit.Framework;
@@ -8,6 +9,7 @@ namespace DatabaseViewer.Data.Tests.Sql
 	[TestFixture]
 	public class DatabaseRepositoryTests
 	{
+		private readonly ConnectionSettings _settings = new ConnectionSettings();
 		/// <summary>
 		/// Receives metadata from a test database and compares the received values
 		/// </summary>
@@ -15,9 +17,8 @@ namespace DatabaseViewer.Data.Tests.Sql
 		public void ShouldBeReturnAllTablesAndColumns()
 		{
 			//arrange
-			const string connectionString = "";
 			var testData = GetTestDatabaseMap();
-			var repo = new SqlDatabaseRepository(connectionString);
+			var repo = new SqlDatabaseRepository(_settings.ConnectionString);
 			//act
 			var databaseMeta = repo.GetMetaOfAllTables();
 			//asserts
@@ -74,15 +75,25 @@ namespace DatabaseViewer.Data.Tests.Sql
 
 		private static DatabaseMap GetTestDatabaseMap()
 		{
-			return new DatabaseMap("")
+			//TODO: take data from another source
+			//in this example, the data is not set completely filled
+			return new DatabaseMap("unittest")
 			{
 				TableMaps = new List<TableMap>
 				{
-					new TableMap("")
+					new TableMap("authors")
 					{
 						ColumnMaps = new List<ColumnMap>
 						{
-							new ColumnMap("", "")
+							new ColumnMap("au_id", "varchar"),
+							new ColumnMap("au_lname", "varchar"),
+							new ColumnMap("au_fname", "varchar"),
+							new ColumnMap("phone", "char"),
+							new ColumnMap("address", "varchar"),
+							new ColumnMap("city", "varchar"),
+							new ColumnMap("state", "char"),
+							new ColumnMap("zip", "char"),
+							new ColumnMap("contract", "bit"),
 						}
 					},
 				}
