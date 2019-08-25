@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseViewer.Console", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseViewer.Configuration", "src\DataBaseViewer.Configuration\DataBaseViewer.Configuration.csproj", "{5116DD66-D66B-4E72-8EAF-22DE1207D952}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E1FB98F3-0FDE-4933-BADA-71DC97238895}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseViewer.Data.Tests", "tests\DatabaseViewer.Data.Tests\DatabaseViewer.Data.Tests.csproj", "{EEE1B92C-9334-49E4-AEEB-850BAB22DEFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +43,16 @@ Global
 		{5116DD66-D66B-4E72-8EAF-22DE1207D952}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5116DD66-D66B-4E72-8EAF-22DE1207D952}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5116DD66-D66B-4E72-8EAF-22DE1207D952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE1B92C-9334-49E4-AEEB-850BAB22DEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE1B92C-9334-49E4-AEEB-850BAB22DEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE1B92C-9334-49E4-AEEB-850BAB22DEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE1B92C-9334-49E4-AEEB-850BAB22DEFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEE1B92C-9334-49E4-AEEB-850BAB22DEFD} = {E1FB98F3-0FDE-4933-BADA-71DC97238895}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65B7F0EC-64BD-4477-8CBE-78105E4AD591}
